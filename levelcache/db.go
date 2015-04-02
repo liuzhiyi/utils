@@ -1,9 +1,10 @@
 package levelcache
 
 import (
-	"github.com/syndtr/goleveldb/leveldb"
 	"time"
-	"ucapi/utils/str"
+
+	"github.com/liuzhiyi/utils/str"
+	"github.com/syndtr/goleveldb/leveldb"
 )
 
 type Levelcache struct {
@@ -24,7 +25,7 @@ func (v *value) isExpired() bool {
 	return v.Expiration-time.Now().UnixNano() <= 0
 }
 
-//1 defaultExpiration:默认过期时间  2 cleanupInterval：设置过期时间
+//1 defaultExpiration:默认过期时间  2 cleanupInterval：设置回收时间
 func NewLevecache(defaultExpiration, cleanupInterval time.Duration, dbPath string) *Levelcache {
 	db, err := leveldb.OpenFile(dbPath, nil)
 	if err != nil {

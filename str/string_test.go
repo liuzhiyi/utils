@@ -21,4 +21,13 @@ func Test_Serialize(t *testing.T) {
 	var dei item
 	Deserialize(i, &dei)
 	fmt.Println(dei)
+	fmt.Println(".../........")
+	m := map[string]string{
+		"hello": "world",
+	}
+	fmt.Println(m)
+	i, err = Serialize(m)
+	ne := make(map[string]string)
+	Deserialize(i, &ne)
+	fmt.Println("map :", ne)
 }
